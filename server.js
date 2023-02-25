@@ -22,7 +22,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-
+mongoose.set('strictQuery', false)
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
