@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 const server = http.createServer(app);
 const port = 8000;
 const RegisterSchema = require('./model/register')
-app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const nodemailer = require('nodemailer');
@@ -19,14 +19,15 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 var generator = require('generate-password');
 const dotenv = require("dotenv");
-
+app.use(cors());
 dotenv.config();
 
-mongoose.set('strictQuery', false)
+
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
+mongoose.set('strictQuery', false)
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.BD_CONNECTION, () => console.log("database connected"))
 app.use('/', router);
